@@ -8,11 +8,12 @@ int i;
 /* ToDo: CONTEXT SAVE'N'STORE
          For saving (Linux): RBP, RBX, RSP, R12, R13, R14, and R15 */
 
-// 0x7 is size of lea instruction, so, it will ref to exactly this line
+//
 #define START()                                       \
     i = ITERATIONS_COUNT;                             \
     __asm__("mov %0, rsp;\n\t" : "=r"(_sp) );         \
     __asm__("mov %0, rbp;\n\t" : "=r"(_bp) );         \
+    /* 0x7 is size of lea instruction, so, it will ref to exactly the line below */ \
     __asm__("lea %0, [rip - 0x7];\n\t" : "=r"(_ip) ); \
     __asm__("mov rsp, %0;\n\t" : : "r"(_sp) );        \
     __asm__("mov rbp, %0;\n\t" : : "r"(_bp) );        \
