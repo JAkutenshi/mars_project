@@ -1,7 +1,7 @@
 #ifndef VENUS_PROJECT_ITERATIONRESULTS_HPP
 #define VENUS_PROJECT_ITERATIONRESULTS_HPP
 
-namespace VenusTest {
+namespace VenusTestLib {
     class IterationResults {
 
     };

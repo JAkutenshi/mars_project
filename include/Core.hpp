@@ -4,13 +4,12 @@
 #include <Collector.hpp>
 #include <cstdint>
 
-namespace VenusTest {
+namespace VenusTestLib {
     class Core {
     public:
         /* STORED AND LOADED REGS */
-        // They're public for no getter-setter functions calling -> no stack use
+        // They're public for no getter-setter functions calling -> no stack usage
         uint64_t _rip, _rbp, _rbx, _rsp, _r12, _r13, _r14, _r15;
-
         /* Static access method. */
         static Core &getInstance();
 
@@ -19,7 +18,9 @@ namespace VenusTest {
         // CPU cycles count in the nanosecond coefficient
         long double cycles_per_nsec;
         // Calibration's iterations count (O(n^2))
+        // ToDo: is that should be there?
         const long calibration_iterations_count = 10000;
+        // Collection of the tests
         Collector testsCollector;
         // Cached current results array to exclude extra functions calls
         IterationResults* p_CacheResults = nullptr;

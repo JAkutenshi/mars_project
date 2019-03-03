@@ -1,34 +1,41 @@
-//
-// Created by jakutenshi on 3/2/19.
-//
-
 #ifndef VENUS_PROJECT_VENUSTEST_HPP
 #define VENUS_PROJECT_VENUSTEST_HPP
 
 #include "Core.hpp"
 
-namespace VenusTest {
+namespace VenusTestLib {
     namespace MacrosOnly {
         Core &tmpInstance = Core::getInstance();
     }
 }
 
 /* MACROS THERE */
-#define START()                                                        \
-        i = ITERATIONS_COUNT;                                          \
-        __asm__("mov %0, rsp;\n\t" : "=m"(VenusTest::MacrosOnly::tmpInstance._rsp));          \
-        __asm__("mov %0, rbp;\n\t" : "=m"(VenusTest::MacrosOnly::tmpInstance._rbp));          \
-        __asm__("lea %0, [rip - 0x7];\n\t" : "=r"(VenusTest::MacrosOnly::tmpInstance._rip));  \
-        __asm__("mov rsp, %0;\n\t" : : "m"(VenusTest::MacrosOnly::tmpInstance._rsp));         \
-        __asm__("mov rbp, %0;\n\t" : : "m"(VenusTest::MacrosOnly::tmpInstance._rbp));         \
+#define START()                                                                                           \
+    i = ITERATIONS_COUNT;                                                                                 \
+    __asm__ __volatile__("mov %0, rsp;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._rsp));          \
+    __asm__ __volatile__("mov %0, rbp;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._rbp));          \
+    __asm__ __volatile__("mov %0, rbx;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._rbx));          \
+    __asm__ __volatile__("mov %0, r12;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._r12));          \
+    __asm__ __volatile__("mov %0, r13;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._r13));          \
+    __asm__ __volatile__("mov %0, r14;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._r14));          \
+    __asm__ __volatile__("mov %0, r15;\n\t" : "=m"(VenusTestLib::MacrosOnly::tmpInstance._r15));          \
+    __asm__ __volatile__("lea %0, [rip - 0x7];\n\t" : "=r"(VenusTestLib::MacrosOnly::tmpInstance._rip));  \
+    __asm__ __volatile__("mov r12, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._r12));         \
+    __asm__ __volatile__("mov r13, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._r13));         \
+    __asm__ __volatile__("mov r14, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._r14));         \
+    __asm__ __volatile__("mov r15, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._r15));         \
+    __asm__ __volatile__("mov rbx, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._rbx));         \
+    __asm__ __volatile__("mov rsp, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._rsp));         \
+    __asm__ __volatile__("mov rbp, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._rbp));         \
 
 
-#define END()                                                          \
-        if (i != 0)                                                    \
-        {                                                              \
-            i--;                                                       \
-            __asm__("jmp %0;\n\t" : : "m"(VenusTest::MacrosOnly::tmpInstance._rip));          \
-        }                                                              \
+
+#define END()                                                                                \
+    if (i != 0)                                                                              \
+    {                                                                                        \
+    i--;                                                                                     \
+    __asm__ __volatile__("jmp %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::tmpInstance._rip)); \
+    }                                                                                        \
 
 
 #define SAMPLE() \

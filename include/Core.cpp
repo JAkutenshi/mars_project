@@ -1,35 +1,36 @@
 #include "Core.hpp"
+#include <chrono>
 
-VenusTest::Core &VenusTest::Core::getInstance() {
+VenusTestLib::Core &VenusTestLib::Core::getInstance() {
     static Core instance;
     return instance;
 }
 
-VenusTest::Core::Core() {
+VenusTestLib::Core::Core() {
     calibrateCPUTicks();
 }
 
-VenusTest::Core::~Core() {
-
+VenusTestLib::Core::~Core() {
+    // ToDo: should I delete[] p_CacheResults ?
 }
 
-uint64_t VenusTest::Core::getCurrentCPUCycles() {
+uint64_t VenusTestLib::Core::getCurrentCPUCycles() {
     uint32_t eax, edx;
     __asm__ __volatile__(" rdtsc\n" : "=a" (eax), "=d" (edx));
     return ((uint64_t) eax) | (((uint64_t) edx) << 32);
 }
 
-uint64_t VenusTest::Core::getCurrentNanoseconds() {
+uint64_t VenusTestLib::Core::getCurrentNanoseconds() {
     auto now = std::chrono::system_clock::now();
     auto duration = now.time_since_epoch();
     auto nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
-    return nanos;
+    return (uint64_t) nanos;
 }
 
-void VenusTest::Core::calibrateCPUTicks() {
+void VenusTestLib::Core::calibrateCPUTicks() {
     auto start_t = getCurrentNanoseconds();
     auto start_c = getCurrentCPUCycles();
-    for (int i = 0; i < calibration_iterations_count i++)
+    for (int i = 0; i < calibration_iterations_count; i++)
         for (int j = 0; j < calibration_iterations_count; j++);
     auto end_c = getCurrentCPUCycles();
     auto end_t = getCurrentNanoseconds();

@@ -1,26 +1,29 @@
 #include <stdio.h>
 #include "VenusTest.hpp"
 
-#define ITERATIONS_COUNT 10
+#define ITERATIONS_COUNT 10000
 int i;
 
-void foo()
-{
+void boo() {
+    printf("4\n");
+    SAMPLE()
+    printf("5\n");
+}
+
+void foo() {
     printf("1\n");
     int k = 0;
-
-
     SAMPLE()
     printf("2\n");
     SAMPLE()
     printf("3\n");
     SAMPLE()
-    printf("4\n");
+    boo();
+
     return;
 }
 
-int main()
-{
+int main() {
     START()
     foo();//printf("1\n");
     END()
