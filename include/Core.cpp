@@ -1,13 +1,17 @@
 #include "Core.hpp"
+#include "Config.hpp"
+
 #include <chrono>
+#include <iostream>
+
+long double VenusTestLib::Core::cycles_per_nsec = calibrateCPUTicks();
 
 VenusTestLib::Core &VenusTestLib::Core::getInstance() {
     static Core instance;
     return instance;
 }
 
-VenusTestLib::Core::Core() {
-    calibrateCPUTicks();
+VenusTestLib::Core::Core() : testsCollector() {
 }
 
 VenusTestLib::Core::~Core() {
@@ -20,19 +24,28 @@ uint64_t VenusTestLib::Core::getCurrentCPUCycles() {
     return ((uint64_t) eax) | (((uint64_t) edx) << 32);
 }
 
-uint64_t VenusTestLib::Core::getCurrentNanoseconds() {
+long double VenusTestLib::Core::getCurrentCPUNsec() {
+    //std::cout << "\tCyc/nsec = " << cycles_per_nsec << std::endl;
+    return (getCurrentCPUCycles() / cycles_per_nsec);
+}
+
+uint64_t VenusTestLib::Core::getCurrentChronoNsec() {
     auto now = std::chrono::system_clock::now();
     auto duration = now.time_since_epoch();
     auto nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
     return (uint64_t) nanos;
 }
 
-void VenusTestLib::Core::calibrateCPUTicks() {
-    auto start_t = getCurrentNanoseconds();
+long double VenusTestLib::Core::calibrateCPUTicks() {
+    auto start_t = getCurrentChronoNsec();
     auto start_c = getCurrentCPUCycles();
     for (int i = 0; i < calibration_iterations_count; i++)
         for (int j = 0; j < calibration_iterations_count; j++);
     auto end_c = getCurrentCPUCycles();
-    auto end_t = getCurrentNanoseconds();
-    cycles_per_nsec = (end_c - start_c) / (end_t - start_t);
+    auto end_t = getCurrentChronoNsec();
+    return (end_c - start_c) / (end_t - start_t);
 }
+
+/*long double VenusTestLib::Core::getCyclesPerNsecCoeff() {
+    return cycles_per_nsec;
+}*/

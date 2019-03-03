@@ -1,7 +1,7 @@
 #include "Collector.hpp"
 
 void VenusTestLib::Collector::addTest(const VenusTestLib::Test test) {
-    this->tests.push_back(test);
+    tests.push_back(test);
 }
 
 std::string VenusTestLib::Collector::getJSON() {
@@ -24,10 +24,10 @@ uint64_t VenusTestLib::Collector::getTestsCount() {
 }
 
 VenusTestLib::Collector::Collector() {
-    this->tests.clear();
+    tests.clear();
 }
 
 VenusTestLib::Collector::Collector(const Test firstTest) {
-    this->tests.clear();
-    this->tests.push_back(firstTest);
+    tests.clear();
+    tests.push_back(firstTest);
 }

@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <iostream>
 #include "VenusTest.hpp"
 
-#define ITERATIONS_COUNT 10000
+#define ITERATIONS_COUNT 10
 int i;
 
 void boo() {
@@ -14,8 +15,6 @@ void foo() {
     printf("1\n");
     int k = 0;
     SAMPLE()
-    printf("2\n");
-    SAMPLE()
     printf("3\n");
     SAMPLE()
     boo();
@@ -23,10 +22,24 @@ void foo() {
     return;
 }
 
+void comp(int n) {
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++);
+}
+
 int main() {
+
     START()
     foo();//printf("1\n");
     END()
+
+    uint64_t t_cpu_c, t_chrono_ns;
+    long double t_cpu_ns;
+
+    using namespace VenusTestLib;
+
+
+
 
     return 0;
 }
