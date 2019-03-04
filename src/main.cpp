@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+
 #include "VenusTest.hpp"
 
 #define ITERATIONS_COUNT 10
@@ -38,7 +39,7 @@ int main() {
 
     using namespace VenusTestLib;
 
-
+    VenusTestLib::Core::
 
 
     return 0;

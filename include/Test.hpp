@@ -3,9 +3,9 @@
 
 #include <stdint-gcc.h>
 #include <string>
+
 #include "IterationResults.hpp"
 #include "Config.hpp"
-
 
 namespace VenusTestLib {
     class Test {

@@ -1,8 +1,8 @@
-#include "Core.hpp"
-#include "Config.hpp"
-
 #include <chrono>
 #include <iostream>
+
+#include "Core.hpp"
+#include "Config.hpp"
 
 long double VenusTestLib::Core::cycles_per_nsec = calibrateCPUTicks();
 
@@ -25,7 +25,6 @@ uint64_t VenusTestLib::Core::getCurrentCPUCycles() {
 }
 
 long double VenusTestLib::Core::getCurrentCPUNsec() {
-    //std::cout << "\tCyc/nsec = " << cycles_per_nsec << std::endl;
     return (getCurrentCPUCycles() / cycles_per_nsec);
 }
 

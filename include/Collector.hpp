@@ -1,10 +1,11 @@
 #ifndef VENUS_PROJECT_COLLECTOR_HPP
 #define VENUS_PROJECT_COLLECTOR_HPP
 
-#include "Test.hpp"
 #include <vector>
 #include <string>
 #include <stdint-gcc.h>
+
+#include "Test.hpp"
 
 namespace VenusTestLib {
     class Collector {
