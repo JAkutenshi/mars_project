@@ -34,13 +34,5 @@ int main() {
     foo();//printf("1\n");
     END()
 
-    uint64_t t_cpu_c, t_chrono_ns;
-    long double t_cpu_ns;
-
-    using namespace VenusTestLib;
-
-    VenusTestLib::Core::
-
-
     return 0;
 }

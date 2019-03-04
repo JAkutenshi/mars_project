@@ -15,8 +15,8 @@ namespace VenusTestLib {
         static Core &getInstance();
         // Get CPU cycles and timer methods
         static uint64_t getCurrentCPUCycles();
-        static long double getCurrentCPUNsec();
-        static uint64_t getCurrentChronoNsec();
+        static long double getCurrentCPUNSec();
+        static uint64_t getCurrentChronoNSec();
         //static long double getCyclesPerNsecCoeff();
 
     private:
@@ -25,17 +25,17 @@ namespace VenusTestLib {
 
         /* CONSTANTS */
         // Calibration's iterations count (O(n^2))
-        static const long calibration_iterations_count = CORE_CPU_CALIBRATION_CYCLES_COUNT;
+        static const long CALIBRATION_ITERATIONS_COUNT = CORE_CPU_CALIBRATION_CYCLES_COUNT;
 
         /* FIELDS */
         // CPU cycles count in the nanosecond coefficient
-        static long double cycles_per_nsec;
+        static long double cyclesPerNSec;
 
     private:
         // Collection of the tests
         Collector testsCollector;
         // Cached current results array to exclude extra functions calls
-        IterationResults* p_CacheResults = nullptr;
+        IterationResults* p_cacheResults = nullptr;
 
         /* METHODS */
         // Private constructor and destructor to prevent instancing.

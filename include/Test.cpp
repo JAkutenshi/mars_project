@@ -1,7 +1,7 @@
 #include "Test.hpp"
 #include "Core.hpp"
 
-VenusTestLib::Test::Test() : id(Core::getCurrentChronoNsec()) {
+VenusTestLib::Test::Test() : id(Core::getCurrentChronoNSec()) {
     p_iterations = new IterationResults[iterationsCount];
 }
 
