@@ -7,6 +7,7 @@
 
 #include "Config.hpp"
 #include "IterationResults.hpp"
+#include "TestResults.hpp"
 
 namespace VenusTestLib {
     class Test {
@@ -16,10 +17,10 @@ namespace VenusTestLib {
         /* const */ uint64_t m_iterationsCount;
         /* const */ uint64_t m_iterationsSkip;
         std::vector<IterationResults> m_iterations;
+        TestResults* results;
 
     public:
         void addIteration(const IterationResults&);
-
 
 
         Test();
@@ -36,6 +37,7 @@ namespace VenusTestLib {
         const uint64_t getIterationsCount() const;
         const uint64_t getIterationsSkip() const;
         std::vector<IterationResults>& getIterations() const;
+
 
     };
 }

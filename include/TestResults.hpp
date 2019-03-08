@@ -16,6 +16,9 @@ namespace VenusTestLib {
 
     public:
         TestResults(const vector<IterationResults>, const uint64_t, const uint64_t);
+        TestResults(const TestResults&);
+
+        TestResults& operator=(const TestResults&);
 
         long double getCPUTime() const;
         long double getChronoTime() const;

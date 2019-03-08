@@ -26,6 +26,20 @@ TestResults::TestResults(const vector<IterationResults> iterations,
     }
 }
 
+TestResults::TestResults(const TestResults& results) :
+    m_cpu_time(results.getCPUTime()),
+    m_chrono_time(results.getChronoTime()),
+    m_bytes(results.getBytes()) {}
+
+TestResults& TestResults::operator=(const TestResults& results) {
+    if (this != &results) {
+        m_cpu_time    = results.getCPUTime();
+        m_chrono_time = results.getChronoTime();
+        m_bytes       = results.getBytes();
+    }
+    return *this;
+}
+
 long double TestResults::getCPUTime() const {
     return m_cpu_time;
 }
