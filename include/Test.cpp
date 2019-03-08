@@ -14,7 +14,7 @@ Test::Test() :
     m_iterationsCount(DEFAULT_ITERATIONS_COUNT),
     m_iterationsSkip(DEFAULT_ITERATIONS_SKIP),
     m_iterations(m_iterationsCount, -1) {
-    results = nullptr;
+    m_results = nullptr;
 }
 
 Test::Test(const string& name) :
@@ -23,7 +23,7 @@ Test::Test(const string& name) :
     m_iterationsCount(DEFAULT_ITERATIONS_COUNT),
     m_iterationsSkip(DEFAULT_ITERATIONS_SKIP),
     m_iterations(m_iterationsCount, -1) {
-    results = nullptr;
+    m_results = nullptr;
 }
 
 Test::Test(const string& name,
@@ -34,7 +34,7 @@ Test::Test(const string& name,
     m_iterationsCount(count),
     m_iterationsSkip(skip),
     m_iterations(m_iterationsCount, -1) {
-    results = nullptr;
+    m_results = nullptr;
 }
 
 Test::Test(const uint64_t count,
@@ -44,7 +44,7 @@ Test::Test(const uint64_t count,
     m_iterationsCount(count),
     m_iterationsSkip(skip),
     m_iterations(m_iterationsCount, -1) {
-    results = nullptr;
+    m_results = nullptr;
 }
 
 Test::Test(const Test& test) :
@@ -52,23 +52,23 @@ Test::Test(const Test& test) :
     m_name(test.getName()),
     m_iterationsCount(test.getIterationsCount()),
     m_iterationsSkip(test.getIterationsCount()),
-    m_iterations(test.getIterations()) {
-    results = nullptr;
-}
+    m_iterations(test.getIterations()),
+    m_results(test.getResults()) {}
 
 Test::~Test() {
-    if (results != nullptr) {
-        delete results;
+    if (m_results != nullptr) {
+        delete m_results;
     }
 }
 
 Test& Test::operator=(const Test& test) {
     if (this != &test) {
-        m_id = test.getId();
-        m_name = test.getName();
-        m_iterationsCount = test.getIterationsCount();
-        m_iterationsSkip = test.getIterationsSkip();
-        m_iterations = test.getIterations();
+        m_id               = test.getId();
+        m_name             = test.getName();
+        m_iterationsCount  = test.getIterationsCount();
+        m_iterationsSkip   = test.getIterationsSkip();
+        m_iterations       = test.getIterations();
+        m_results          = test.getResults();
     }
 
     return *this;
@@ -92,4 +92,14 @@ const uint64_t Test::getIterationsSkip() const {
 
 IterationResults Test::getIterations() const {
     return p_iterations;
+}
+
+TestResults *Test::getResults() const {
+    try {
+        if (m_results == nullptr) {
+            m_results = new TestResults(m_iterations, m_iterationsCount, m_iterationsSkip);
+        }
+    }
+
+    return m_results;
 }

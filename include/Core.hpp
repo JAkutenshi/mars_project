@@ -29,7 +29,7 @@ namespace VenusTestLib {
         static long double cyclesPerNSec;
         // Collection of the tests
         Collector testsCollector;
-        // Cached current results array to exclude extra functions calls
+        // Cached current m_results array to exclude extra functions calls
         Test* currentTest;
 
         /* METHODS */

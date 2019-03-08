@@ -17,7 +17,7 @@ namespace VenusTestLib {
         /* const */ uint64_t m_iterationsCount;
         /* const */ uint64_t m_iterationsSkip;
         std::vector<IterationResults> m_iterations;
-        TestResults* results;
+        TestResults* m_results;
 
     public:
         void addIteration(const IterationResults&);
@@ -37,6 +37,7 @@ namespace VenusTestLib {
         const uint64_t getIterationsCount() const;
         const uint64_t getIterationsSkip() const;
         std::vector<IterationResults>& getIterations() const;
+        TestResults *getResults() const;
 
 
     };
