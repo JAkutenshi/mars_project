@@ -20,9 +20,6 @@ namespace VenusTestLib {
         //static long double getCyclesPerNsecCoeff();
 
     private:
-        /* FRIENDS */
-        friend Test;
-
         /* CONSTANTS */
         // Calibration's iterations count (O(n^2))
         static const long CALIBRATION_ITERATIONS_COUNT = CORE_CPU_CALIBRATION_CYCLES_COUNT;
@@ -30,12 +27,10 @@ namespace VenusTestLib {
         /* FIELDS */
         // CPU cycles count in the nanosecond coefficient
         static long double cyclesPerNSec;
-
-    private:
         // Collection of the tests
         Collector testsCollector;
         // Cached current results array to exclude extra functions calls
-        IterationResults* p_cacheResults = nullptr;
+        Test* currentTest;
 
         /* METHODS */
         // Private constructor and destructor to prevent instancing.

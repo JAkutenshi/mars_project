@@ -29,10 +29,12 @@ void comp(int n) {
 }
 
 int main() {
+    using namespace std;
 
-    START()
+
+    /*START()
     foo();//printf("1\n");
-    END()
+    END()*/
 
     return 0;
 }

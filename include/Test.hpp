@@ -3,25 +3,40 @@
 
 #include <stdint-gcc.h>
 #include <string>
+#include <vector>
 
-#include "IterationResults.hpp"
 #include "Config.hpp"
+#include "IterationResults.hpp"
 
 namespace VenusTestLib {
     class Test {
     private:
-        const uint64_t id;
-        const std::string name ="NO_NAME";
-        const uint64_t iterationsCount = DEFAULT_ITERATIONS_COUNT;
-        const uint64_t iterationsSkip = DEFAULT_ITERATIONS_SKIP;
-        IterationResults* p_iterations;
+        /* const */ uint64_t m_id;
+        /* const */ std::string m_name;
+        /* const */ uint64_t m_iterationsCount;
+        /* const */ uint64_t m_iterationsSkip;
+        std::vector<IterationResults> m_iterations;
 
     public:
-        virtual ~Test();
+        void addIteration(const IterationResults&);
 
-        Test(const uint64_t id);
+
 
         Test();
+        Test(const std::string&);
+        Test(const std::string&, const uint64_t, const uint64_t);
+        Test(const uint64_t, const uint64_t);
+        Test(const Test&);
+        virtual ~Test();
+
+        Test& operator=(const Test&);
+
+        const uint64_t getId() const;
+        const std::string &getName() const;
+        const uint64_t getIterationsCount() const;
+        const uint64_t getIterationsSkip() const;
+        std::vector<IterationResults>& getIterations() const;
+
     };
 }
 
