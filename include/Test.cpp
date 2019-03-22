@@ -103,3 +103,15 @@ TestResults *Test::getResults() const {
 
     return m_results;
 }
+
+std::string &Test::getJSON() const {
+    std:: string json = "";
+    json.append("    {\n");
+    json.append("      \"name\": \""    + m_name                                     + "\",\n");
+    json.append("      \"real_time\": " + std::to_string(m_results->getChronoTime()) + ",\n");
+    json.append("      \"cpu_time\": "  + std::to_string(m_results->getCPUTime())    + ",\n");
+    json.append("      \"bytes\": "     + std::to_string(m_results->getBytes())      + ",\n");
+    json.append("      \"bm_id\": "     + std::to_string(m_id)                       + "\n");
+    json.append("    }");
+    return json;
+}

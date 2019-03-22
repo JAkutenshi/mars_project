@@ -1,6 +1,5 @@
 #include "TestResults.hpp"
 
-using namespace std;
 using namespace VenusTestLib;
 
 TestResults::TestResults(const vector<IterationResults> iterations,

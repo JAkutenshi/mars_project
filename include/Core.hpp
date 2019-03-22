@@ -4,6 +4,7 @@
 #include <cstdint>
 
 #include "Collector.hpp"
+#include "IterationResults.hpp"
 
 namespace VenusTestLib {
     class Core {
@@ -18,6 +19,9 @@ namespace VenusTestLib {
         static long double getCurrentCPUNSec();
         static uint64_t getCurrentChronoNSec();
         //static long double getCyclesPerNsecCoeff();
+        void startTest();
+        void startTest(const std::string&);
+        void endTest();
 
     private:
         /* CONSTANTS */
@@ -28,9 +32,13 @@ namespace VenusTestLib {
         // CPU cycles count in the nanosecond coefficient
         static long double cyclesPerNSec;
         // Collection of the tests
-        Collector testsCollector;
+        Collector m_testsCollector;
+
+        /* CURRENT TEST STATUS */
         // Cached current m_results array to exclude extra functions calls
-        Test* currentTest;
+        Test* m_p_current_test;
+        std::vector<IterationResults> m_current_results;
+        bool m_is_test_started;
 
         /* METHODS */
         // Private constructor and destructor to prevent instancing.

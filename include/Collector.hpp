@@ -18,9 +18,7 @@ namespace VenusTestLib {
         Collector(const Test firstTest);
 
         void addTest(const Test test);
-        std::string getJSON();
-        std::string getJSON(int i);
-        std::string getJSONbyID(int id);
+        std::string& getJSON();
         uint64_t getTestsCount();
     };
 }

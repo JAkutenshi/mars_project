@@ -31,6 +31,7 @@ void comp(int n) {
 int main() {
     using namespace std;
 
+    VenusTestLib::MacrosOnly::directInstance.
 
     /*START()
     foo();//printf("1\n");

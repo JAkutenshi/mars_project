@@ -1,33 +1,30 @@
 #include "Collector.hpp"
 
-void VenusTestLib::Collector::addTest(const VenusTestLib::Test test) {
+using namespace std;
+using namespace VenusTestLib;
+
+void Collector::addTest(const Test test) {
     tests.push_back(test);
 }
 
-std::string VenusTestLib::Collector::getJSON() {
-    //ToDo
-    return nullptr;
+string& Collector::getJSON() {
+    string json = "{\n  \"tests\": [\n";
+
+    for (uint64_t i = 0; i < tests.size() - 1; ++i) {
+        json.append(tests[i].getJSON() + ",\n");
+    }
+    json.append(tests[tests.size() - 1].getJSON() + "\n  ]\n}");
+
+    return json;
 }
 
-std::string VenusTestLib::Collector::getJSON(int i) {
-    //ToDo
-    return nullptr;
-}
-
-std::string VenusTestLib::Collector::getJSONbyID(int id) {
-    //ToDo
-    return nullptr;
-}
-
-uint64_t VenusTestLib::Collector::getTestsCount() {
+uint64_t Collector::getTestsCount() {
     return tests.size();
 }
 
-VenusTestLib::Collector::Collector() {
-    tests.clear();
+Collector::Collector() : tests() {
 }
 
-VenusTestLib::Collector::Collector(const Test firstTest) {
-    tests.clear();
+Collector::Collector(const Test firstTest) : tests() {
     tests.push_back(firstTest);
 }

@@ -10,8 +10,7 @@ namespace VenusTestLib {
 }
 
 /* MACROS THERE */
-#define START()                                                                                           \
-    i = ITERATIONS_COUNT;                                                                                 \
+#define STORE_STATE()                                                                                        \
     __asm__ __volatile__("mov %0, rsp;\n\t" : "=m"(VenusTestLib::MacrosOnly::directInstance._rsp));          \
     __asm__ __volatile__("mov %0, rbp;\n\t" : "=m"(VenusTestLib::MacrosOnly::directInstance._rbp));          \
     __asm__ __volatile__("mov %0, rbx;\n\t" : "=m"(VenusTestLib::MacrosOnly::directInstance._rbx));          \
@@ -28,14 +27,11 @@ namespace VenusTestLib {
     __asm__ __volatile__("mov rsp, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::directInstance._rsp));         \
     __asm__ __volatile__("mov rbp, %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::directInstance._rbp));         \
 
-
-
-#define END()                                                                                \
-    if (i != 0)                                                                              \
-    {                                                                                        \
-    i--;                                                                                     \
+#define RESTORE_STATE()                                                                         \
     __asm__ __volatile__("jmp %0;\n\t" : : "m"(VenusTestLib::MacrosOnly::directInstance._rip)); \
-    }                                                                                        \
+
+#define START_SAMPLE(name) \
+
 
 
 #define SAMPLE() \

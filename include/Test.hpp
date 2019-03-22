@@ -33,11 +33,12 @@ namespace VenusTestLib {
         Test& operator=(const Test&);
 
         const uint64_t getId() const;
-        const std::string &getName() const;
+        const std::string& getName() const;
         const uint64_t getIterationsCount() const;
         const uint64_t getIterationsSkip() const;
         std::vector<IterationResults>& getIterations() const;
         TestResults *getResults() const;
+        std::string& getJSON() const;
 
 
     };
